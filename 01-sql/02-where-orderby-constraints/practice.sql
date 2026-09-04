@@ -1,3 +1,157 @@
+CREATE TABLE employees(id INT, name VARCHAR(200), salary DECIMAL(10, 2), role VARCHAR(200)));
+
+INSERT INTO employees (id, name, salary, role)
+VALUES
+(1, 'mari sekar' , 60000 , 'Data Engineer'),
+(2, 'nethaji' , 70000 , 'Software Engineer'),
+(3, 'sathish', 60000 , 'Accounting'),
+(4, 'karuna' , 40000, 'Electrician');
+
+-- PROBLEM 1 -- 
+-- Display employees whose salary is greater than 50000 --
+SELECT * FROM employees
+WHERE salary > 50000;
+
+-- PROBLEM 2 --
+-- Display employees from Data Engineering --
+SELECT * FROM employees
+WHERE role = 'Data Engineer';
+
+-- PROBLEM 3 --
+-- Multiple WHERE conditions --
+SELECT * FROM employees
+WHERE salary > 50000 AND role = 'Data Engineer';
+
+-- PROBLEM 4 --
+-- Order salary from lowest to highest --
+SELECT * FROM employees
+ORDER BY salary;
+
+-- PROBLEM 5 --
+-- Order salary from highest to lowest using DESC --
+SELECT * FROM employees
+ORDER BY salary DESC; 
+
+-- PROBLEM 6 --
+-- Create departments table --
+CREATE TABLE IF NOT EXISTS deparments(
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(200) NOT NULL UNIQUE,
+    manager_name VARCHAR(150)
+);
+INSERT INTO departments(department_id, department_name, mnager_name)
+VALUES
+(1 , 'cloud', 'ram'),(2 , 'network', 'sam'),(3 , 'dev', 'raj'), (4 , 'design', 'venki'),(5 , 'de', 'sekar');
+
+-- PROBLEM 7 --
+-- Create students table with constraints --
+CREATE TABLE IF NOT EXISTS students(
+    student_id INT PRIMARY KEY, 
+    student_name VARCHAR(200) NOT NULL, 
+    email VARCHAR(100) UNIQUE, 
+    age INT CHECK(age > 18)
+);
+INSERT INTO students(student_id, student_name, email, age)
+VALUES
+(1, 'ramu', 'ramu@gmail.com', 22),
+(2, 'babu', 'babu@gmail.com', 21),
+(3, 'raj', 'raj@gmail.com', 23),
+(4, 'somu', 'somu@gmail.com', 22),
+(5, 'sam', 'sam@gmail.com', 20);
+
+INSERT INTO students(student_id, student_name, email, age)
+VALUES
+(1, 'BOB', 'Bramu@gmail.com', 22);
+
+INSERT INTO students(student_id, student_name, email, age)
+VALUES
+(6, 'ABI', 'ramu@gmail.com', 22);
+
+INSERT INTO students(student_id, student_name, email, age)
+VALUES
+((7, NULL , 'Sramu@gmail.com', 22);
+
+INSERT INTO students(student_id, student_name, email, age)
+VALUES
+((8, 'ashok', 'ashok@gmail.com', 16);
+
+
+
+-- PROBLEM 8 --
+-- Create employee_projects with composite primary key --
+CREATE TABLE IF NOT EXISTS employee_projects(
+    employee_id INT,
+    project_id INT,
+    assigned_date DATE
+    PRIMARY KEY(employee_id, project_id)
+);
+INSERT INTO employee_projects(employee_id, project_id, assigned_date)   
+VALUES
+(1, 101, '2022-01-25'),
+(1, 101, '2022-01-25');
+
+
+-- PROBLEM 9 --
+-- Create employees_v2 with foreign key --
+CREATE TABLE IF NOT EXISTS employee_v2(
+    employee_id INT PRIMARY KEY,
+    employee_name VARCHAR(50) NOT NULL,
+    department_id INT,
+    FOREIGN KEY (department_id) REFERENCES departments(department_id)
+);
+INSERT INTO employee_v2(employee_id, employee_name, department_id)
+VALUES
+(101, 'ram', 99);
+
+-- PROBLEM 10 --
+-- Build the company database challenge --
+CREATE TABLE IF NOT EXISTS companies(
+    company_id INT PRIMARY KEY,
+    company_name VARCHAR(50) NOT NULL,
+    email VARCHAR(150) UNIQUE
+);
+CREATE TABLE IF NOT EXISTS company_employees(
+    employee_id INT PRIMARY KEY,
+    employee_name VARCHAR(250) NOT NULL,
+    email VARCHAR(200) UNIQUE,
+    age INT CHECK(age >= 18),
+    company_id INT,
+    salary INT CHECK(salary > 0),
+    FOREIGN KEY company_id REFERENCES companies(company_id)
+);
+INSERT INTO companies(company_id, company_name, email)
+VALUES
+(1, 'Tech Corp', 'info@techcorp.com'),
+(2, 'Innovate Inc', 'info@innovateinc.com'),
+(3, 'Global Solutions', 'info@globalsolutions.com');
+
+INSERT INTO company_employees(employee_id, employee_name, email, age, company_id, salary)
+VALUES
+(1, 'Alice Johnson', 'alice@techcorp.com', 25, 1, 75000),
+(2, 'Bob Smith', 'bob@innovateinc.com', 30, 2, 80000),
+(3, 'Charlie Brown', 'charlie@globalsolutions.com', 35, 3, 85000),
+(4, 'David Lee', 'david@globalsolutions.com', 28, 3, 70000),
+(5, 'Eva Green', 'eva@globalsolutions.com', 26, 3, 72000),
+(6, 'Frank White', 'frank@globalsolutions.com', 32, 3, 78000),
+(7, 'Grace Black', 'grace@globalsolutions.com', 29, 3, 74000),
+(8, 'Hannah Blue', 'hannah@globalsolutions.com', 27, 3, 71000);
+
+INSERT INTO company_employees(employee_id, employee_name, email, age, company_id, salary)
+VALUES
+(9, 'Ian Red', 'ian@globalsolutions.com', 31, 4, 76000);
+
+INSERT INTO company_employees(employee_id, employee_name, email, age, company_id, salary)
+VALUES
+(10, 'Ian Red', 'ian@globalsolutions.com', 31, 4, 76000);
+
+INSERT INTO company_employees(employee_id, employee_name, email, age, company_id, salary)
+VALUES
+(11, 'Ian Red', 'ROMEn@globalsolutions.com', 17, 4, 76000);
+
+INSERT INTO company_employees(employee_id, employee_name, email, age, company_id, salary)
+VALUES
+(12, 'Ian Red', 'San@globalsolutions.com', 31, 4, 76000);
+
 -- =============================================
 -- MYSQL DAY 02 - PRACTICE PROBLEMS
 -- =============================================
@@ -246,4 +400,10 @@ WHERE company_id = 1;
 -- 4. Display employees from highest salary to lowest salary
 SELECT *
 FROM company_employees
+ORDER BY salary DESC;
+
+-- 5. Display employees from a specific company (e.g., Crest Financials)
+SELECT *
+FROM company_employees
+WHERE company_id = 3;
 ORDER BY salary DESC;
