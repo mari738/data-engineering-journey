@@ -168,7 +168,7 @@ WHERE salary > 50000;
 
 
 -- =============================================
--- PROBLEM 2 — WHERE with Text 🟢
+-- PROBLEM 2 — WHERE with Text 
 -- Display employees who work in Data Engineering
 -- =============================================
 SELECT * 
@@ -177,7 +177,7 @@ WHERE department = 'Data Engineering';
 
 
 -- =============================================
--- PROBLEM 3 — WHERE with Multiple Conditions 🟢
+-- PROBLEM 3 — WHERE with Multiple Conditions 
 -- Salary > 50000 AND department = 'Engineering'
 -- =============================================
 SELECT * 
@@ -187,6 +187,7 @@ WHERE salary > 50000
 
 
 -- =============================================
+-- PROBLEM 4 — ORDER BY
 -- Salary from lowest to highest (ASC by default)
 -- =============================================
 SELECT * 
@@ -195,6 +196,7 @@ ORDER BY salary ASC;
 
 
 -- =============================================
+-- PROBLEM 5 — DESC 
 -- Salary from highest to lowest explicitly using DESC
 -- =============================================
 SELECT * 
