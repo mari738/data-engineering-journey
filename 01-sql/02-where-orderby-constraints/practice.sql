@@ -187,7 +187,6 @@ WHERE salary > 50000
 
 
 -- =============================================
--- PROBLEM 4 — ORDER BY 🟢
 -- Salary from lowest to highest (ASC by default)
 -- =============================================
 SELECT * 
@@ -196,7 +195,6 @@ ORDER BY salary ASC;
 
 
 -- =============================================
--- PROBLEM 5 — DESC 🟡
 -- Salary from highest to lowest explicitly using DESC
 -- =============================================
 SELECT * 
@@ -205,7 +203,7 @@ ORDER BY salary DESC;
 
 
 -- =============================================
--- PROBLEM 6 — PRIMARY KEY 🟡
+-- PROBLEM 6 — PRIMARY KEY
 -- Create and populate departments table
 -- =============================================
 CREATE TABLE IF NOT EXISTS departments (
@@ -224,7 +222,7 @@ VALUES
 
 
 -- =============================================
--- PROBLEM 7 — UNIQUE + NOT NULL + CHECK 🟡
+-- PROBLEM 7 — UNIQUE + NOT NULL + CHECK 
 -- Create students table and test constraints
 -- =============================================
 CREATE TABLE IF NOT EXISTS students (
@@ -264,7 +262,7 @@ VALUES
 
 
 -- =============================================
--- PROBLEM 8 — COMPOSITE PRIMARY KEY 🔥
+-- PROBLEM 8 — COMPOSITE PRIMARY KEY 
 -- Create junction table and test composite uniqueness
 -- =============================================
 CREATE TABLE IF NOT EXISTS employee_projects (
@@ -290,7 +288,7 @@ VALUES
 
 
 -- =============================
--- PROBLEM 9 — FOREIGN KEY 🔥
+-- PROBLEM 9 — FOREIGN KEY 
 -- Reference departments table from employees_v2
 -- =============================================
 CREATE TABLE IF NOT EXISTS employees_v2 (
@@ -329,7 +327,7 @@ parent entities.
 
 
 -- =============================================
--- PROBLEM 10 — 🔥 Real-World Challenge
+-- PROBLEM 10 —  Real-World Challenge
 -- Companies & Employees relational schema with constraints
 -- =============================================
 
