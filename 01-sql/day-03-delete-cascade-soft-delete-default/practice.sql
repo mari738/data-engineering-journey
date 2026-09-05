@@ -150,3 +150,102 @@ DELETE FROM customers_cascade WHERE customer_id = 1;
 
 -- Verify all 3 orders associated with customer 1 were dropped
 SELECT * FROM orders_cascade;
+
+-- ====================================================================
+-- PROBLEM 7 — Understand the danger of CASCADE
+-- ====================================================================
+CREATE TABLE IF NOT EXISTS authors (
+    author_id INT PRIMARY KEY,
+    author_name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS books (
+    book_id INT PRIMARY KEY,
+    author_id INT,
+    title VARCHAR(150) NOT NULL,
+    CONSTRAINT fk_author_books
+        FOREIGN KEY (author_id)
+        REFERENCES authors(author_id)
+        ON DELETE CASCADE
+);
+
+-- Insert 3 parents, 5 children
+INSERT INTO authors (author_id, author_name)
+VALUES (1, 'George Orwell'), (2, 'J.K. Rowling'), (3, 'J.R.R. Tolkien');
+
+INSERT INTO books (book_id, author_id, title)
+VALUES 
+    (1, 1, '1984'),
+    (2, 1, 'Animal Farm'),
+    (3, 2, 'Harry Potter 1'),
+    (4, 2, 'Harry Potter 2'),
+    (5, 3, 'The Hobbit');
+
+-- Pre-delete check
+SELECT * FROM authors;
+SELECT * FROM books;
+
+-- Delete one author (Author 2: J.K. Rowling)
+DELETE FROM authors WHERE author_id = 2;
+
+-- Post-delete check: Books 3 and 4 vanished without explicit warning
+SELECT * FROM authors;
+SELECT * FROM books;
+
+
+-- ====================================================================
+-- PROBLEM 8 — Soft Delete
+-- ====================================================================
+CREATE TABLE IF NOT EXISTS employees_soft_delete (
+    employee_id INT PRIMARY KEY,
+    employee_name VARCHAR(100) NOT NULL,
+    salary DECIMAL(10, 2) NOT NULL,
+    is_deleted TINYINT(1) DEFAULT 0
+);
+
+INSERT INTO employees_soft_delete (employee_id, employee_name, salary)
+VALUES
+    (1, 'Neha Kapoor', 65000.00),
+    (2, 'Dev Patel', 72000.00),
+    (3, 'Tanvi Joshi', 81000.00),
+    (4, 'Arjun Das', 59000.00),
+    (5, 'Zoya Khan', 93000.00);
+
+-- Perform soft delete on employee 3
+UPDATE employees_soft_delete
+SET is_deleted = 1
+WHERE employee_id = 3;
+
+-- Retrieve only active employees
+SELECT * 
+FROM employees_soft_delete
+WHERE is_deleted = 0;
+
+
+-- ====================================================================
+-- PROBLEM 9 — Soft Delete + Restore
+-- ====================================================================
+-- 1. Soft delete 2 employees (IDs 1 and 4)
+UPDATE employees_soft_delete
+SET is_deleted = 1
+WHERE employee_id IN (1, 4);
+
+-- 2. Display only active employees
+SELECT * 
+FROM employees_soft_delete
+WHERE is_deleted = 0;
+
+-- 3. Display deleted employees
+SELECT * 
+FROM employees_soft_delete
+WHERE is_deleted = 1;
+
+-- 4. Restore one deleted employee (ID 1)
+UPDATE employees_soft_delete
+SET is_deleted = 0
+WHERE employee_id = 1;
+
+-- 5. Display active employees again
+SELECT * 
+FROM employees_soft_delete
+WHERE is_deleted = 0;
