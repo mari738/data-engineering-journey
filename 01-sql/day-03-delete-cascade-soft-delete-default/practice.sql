@@ -249,3 +249,87 @@ WHERE employee_id = 1;
 SELECT * 
 FROM employees_soft_delete
 WHERE is_deleted = 0;
+
+-- ====================================================================
+-- PROBLEM 10 — Mini Real-World Challenge 🔥
+-- ====================================================================
+CREATE TABLE IF NOT EXISTS challenge_customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(100) NOT NULL,
+    status VARCHAR(20) DEFAULT 'active'
+);
+
+CREATE TABLE IF NOT EXISTS challenge_orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    order_amount DECIMAL(10, 2) NOT NULL,
+    is_deleted TINYINT(1) DEFAULT 0,
+    CONSTRAINT fk_challenge_cust_orders
+        FOREIGN KEY (customer_id)
+        REFERENCES challenge_customers(customer_id)
+        ON DELETE CASCADE
+);
+
+-- Insert 5 customers (using DEFAULT for status)
+INSERT INTO challenge_customers (customer_id, customer_name)
+VALUES
+    (1, 'Aakash Roy'),
+    (2, 'Bhavna Sen'),
+    (3, 'Chetan Bhagat'),
+    (4, 'Divya Nair'),
+    (5, 'Eeshan Guha');
+
+-- Insert 10 orders across customers
+INSERT INTO challenge_orders (order_id, customer_id, order_amount)
+VALUES
+    (101, 1, 120.50),
+    (102, 1, 450.00),
+    (103, 2, 75.20),
+    (104, 2, 230.00),
+    (105, 3, 990.00),
+    (106, 3, 310.00),
+    (107, 4, 60.00),
+    (108, 4, 180.00),
+    (109, 5, 520.00),
+    (110, 5, 840.00);
+
+-- Soft-delete at least 2 orders
+UPDATE challenge_orders
+SET is_deleted = 1
+WHERE order_id IN (102, 106);
+
+-- Query only active orders
+SELECT * 
+FROM challenge_orders
+WHERE is_deleted = 0;
+
+-- Restore one soft-deleted order (Order 102)
+UPDATE challenge_orders
+SET is_deleted = 0
+WHERE order_id = 102;
+
+-- Delete one customer (Customer 5)
+DELETE FROM challenge_customers
+WHERE customer_id = 5;
+
+-- Verify customer 5's orders (109, 110) were permanently cascaded out
+SELECT * 
+FROM challenge_orders
+WHERE customer_id = 5;
+
+/*
+================================================================================
+Hard Delete vs Soft Delete:
+
+1. Hard Delete (SQL DELETE):
+   - Physically purges the row from the disk storage and database tables.
+   - Irreversible without restoring from external backups or binlogs.
+   - Cascading hard deletes can lead to accidental mass data loss across child tables.
+
+2. Soft Delete (SQL UPDATE on flag column like `is_deleted` or `deleted_at`):
+   - Keeps the row physically in storage, toggling a status marker instead.
+   - Fully reversible by flipping the flag back to 0.
+   - Preserves audit trails, historical analytics, and prevents broken joins 
+     in historical reporting tables.
+================================================================================
+*/
