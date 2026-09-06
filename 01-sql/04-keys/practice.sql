@@ -5,3 +5,5 @@ CREATE table students (
     email VARCHAR(100) unique,  
     phone int unique
 )
+-- --
+-- Problem 2 — Find Candidate Keys --
