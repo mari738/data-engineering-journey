@@ -24,3 +24,10 @@ CREATE table countries(
     coutry_name VARCHAR(150),
     currency_code VARCHAR(30)
 );
+
+CREATE products(
+    product_id INT primary key,
+    sku INT unique,
+    product_name VARCHAR(200),
+    price DECIMAL(10,2),
+);
