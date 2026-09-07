@@ -4,7 +4,7 @@ CREATE table students (
     student_name VARCHAR(100),
     email VARCHAR(100) unique,  
     phone int unique
-)
+);
 -- --
 -- Problem 2 — Find Candidate Keys --
 
@@ -15,4 +15,12 @@ CREATE TABLE employees(
     phone INT unique,
     name varchar(200),
     department varchar(100)
-)
+);
+
+--problem 4 --
+--problem 5 --
+CREATE table countries(
+    country_code INT unique,
+    coutry_name VARCHAR(150),
+    currency_code VARCHAR(30)
+);
