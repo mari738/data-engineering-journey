@@ -7,3 +7,12 @@ CREATE table students (
 )
 -- --
 -- Problem 2 — Find Candidate Keys --
+
+--problem 3 --
+CREATE TABLE employees(
+    employee_id INT unique,
+    email VARCHAR(100) unique,
+    phone INT unique,
+    name varchar(200),
+    department varchar(100)
+)
