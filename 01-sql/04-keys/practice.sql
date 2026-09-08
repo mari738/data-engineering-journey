@@ -29,5 +29,12 @@ CREATE products(
     product_id INT primary key,
     sku INT unique,
     product_name VARCHAR(200),
-    price DECIMAL(10,2),
+    price DECIMAL(10,2)
 );
+
+CREATE table students(
+    student_id INT auto_increment primary key,
+    email varchar(100) unique,
+    phone INT unique,
+    student_name VARCHAR(100),
+)
