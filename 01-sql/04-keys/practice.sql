@@ -37,4 +37,5 @@ CREATE table students(
     email varchar(100) unique,
     phone INT unique,
     student_name VARCHAR(100),
+    course varchar(100)
 )
