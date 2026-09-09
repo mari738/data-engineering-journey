@@ -17,6 +17,11 @@ CREATE TABLE employees(
     department varchar(100)
 );
 
+INSERT INTO employees (employee_id, email, phone, name, department)
+VALUES(1, 'JOHN@GMAIL.COM', 1234567890, 'JOHN ROJERS', 'IT'),
+(2, 'sam@gmail.com', 78945611230, 'sam', 'law'),
+()
+
 --problem 4 --
 --problem 5 --
 CREATE table countries(
