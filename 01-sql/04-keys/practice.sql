@@ -20,8 +20,9 @@ CREATE TABLE employees(
 INSERT INTO employees (employee_id, email, phone, name, department)
 VALUES(1, 'JOHN@GMAIL.COM', 1234567890, 'JOHN ROJERS', 'IT'),
 (2, 'sam@gmail.com', 78945611230, 'sam', 'law'),
-()
-
+(3, 'stephen@gmail.com', 78945611231, 'stephen', 'finance'),
+(4, 'abi@gmail.com', 9512357846, 'abishek', 'marketing'),
+(5, 'chadra@gmail.com', 7891134560, 'chandra sekar', 'mechanical');
 --problem 4 --
 --problem 5 --
 CREATE table countries(
