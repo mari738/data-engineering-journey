@@ -42,3 +42,11 @@ CREATE table students(
 INSERT INTO students (email, phone, student_name, course)
 VALUES('john.doe@example.com', 1234567890, 'John Doe', 'Computer Science'),
 ('RAJ@gmail.com', 789945611230, 'Raj', 'Data Science'),
+('babu', 1595744862, 'babu', 'data analyst'),
+('rajesh', 9874556310, 'rajesh', 'business analyst',
+('harish', 78932114566, 'harish', 'data engineer'),
+('kuumar', 75315996842, 'kumar', 'forward deployed engineer'),
+('suresh', 7894561230, 'suresh', 'data scientist'),
+('kumar', 7894561230, 'kumar', 'data analyst'),
+('rajesh', 7894561230, 'rajesh', 'data engineer'),
+('harish', 7894561230, 'harish', 'data scientist');
