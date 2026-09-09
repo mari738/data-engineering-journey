@@ -38,4 +38,7 @@ CREATE table students(
     phone INT unique,
     student_name VARCHAR(100),
     course varchar(100)
-)
+);
+INSERT INTO students (email, phone, student_name, course)
+VALUES('john.doe@example.com', 1234567890, 'John Doe', 'Computer Science'),
+('RAJ@gmail.com', 789945611230, 'Raj', 'Data Science'),
