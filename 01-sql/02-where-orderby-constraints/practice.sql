@@ -150,7 +150,13 @@ VALUES
 
 INSERT INTO company_employees(employee_id, employee_name, email, age, company_id, salary)
 VALUES
-(12, 'Ian Red', 'San@globalsolutions.com', 31, 4, 76000);
+(12, 'Ian Red', 'San@globalsolutions.com', 31, 4, -76000);
+
+SELECT * FROM company_employees
+WHERE company_id = 1;
+
+SELECT * FROM company_employees
+ORDER BY salary DESC;
 
 -- =============================================
 -- MYSQL DAY 02 - PRACTICE PROBLEMS
