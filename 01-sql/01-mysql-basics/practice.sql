@@ -1,6 +1,6 @@
 --problem_1--
 --Create a database--
-CREATE DATABASE company_db;
+CREATE DATABASE IF NOT EXISTS company_db;
 
 --problem_2--
 --Use the database--
@@ -46,6 +46,8 @@ SELECT id, name
 FROM employees 
 WHERE id = 1;
 
+--PROBLEM 10 -- 
+-- Create a temporary table --
 CREATE TEMPORARY TABLE temp_employees(
     id INT,
     name VARCHAR(200)
