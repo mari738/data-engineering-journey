@@ -88,3 +88,9 @@ FROM Employees
 GROUP BY role
 ORDER BY Average_salary DESC;
 
+Problem 9 — HAVING
+SELECT Department, Count(*) AS Number_of_employees, AVG(salary) AS Average_salary
+FROM Employees
+GROUP BY Department
+HAVING Number_of_employees > 3 AND Average_salary > 55000;
+
