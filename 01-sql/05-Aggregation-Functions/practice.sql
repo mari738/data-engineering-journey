@@ -82,4 +82,9 @@ SELECT department, Count(*) AS Number_of_employees, SUM(salary) AS Total_salary,
 FROM Employees
 GROUP BY department;
 
+Problem 8 — GROUP BY role
+SELECT role, Count(*) AS Number_of_employees, AVG(salary) AS Average_salary
+FROM Employees
+GROUP BY role
+ORDER BY Average_salary DESC;
 
