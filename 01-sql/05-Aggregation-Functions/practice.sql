@@ -65,3 +65,16 @@ WHERE Department = 'Engineering';
 SELECT COUNT(*) AS Total_Employees
 FROM Employees
 WHERE salary >= 60000;
+
+Problem 6 — SUM and AVG
+SELECT SUM(salary) AS Total_salary
+FROM Employees;
+
+SELECT AVG(salary) AS Average_salary
+FROM Employees;
+
+SELECT AVG(salary) AS Average_salary
+FROM Employees
+WHERE Department = 'Engineering';
+
+
