@@ -94,3 +94,10 @@ FROM Employees
 GROUP BY Department
 HAVING Number_of_employees > 3 AND Average_salary > 55000;
 
+Problem 10 — Final challenge
+SELECT Department, Count(*) AS Number_of_employees,SUM(salary) AS Total_salary, AVG(salary) AS Average_salary, MAX(salary) AS Maximum_salary, MIN(salary) AS Minimum_salary
+FROM Employees
+WHERE Department IN ("Engineering", "Finance", "HR")
+GROUP BY Department
+HAVING Number_of_employees >= 2 AND Average_salary > 55000
+ORDER BY Total_salary DESC;
