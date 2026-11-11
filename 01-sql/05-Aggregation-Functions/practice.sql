@@ -77,4 +77,9 @@ SELECT AVG(salary) AS Average_salary
 FROM Employees
 WHERE Department = 'Engineering';
 
+Problem 7 — GROUP BY department
+SELECT department, Count(*) AS Number_of_employees, SUM(salary) AS Total_salary, AVG(salary) AS Average_salary, MAX(salary) AS Maximum_salary, MIN(salary) AS Minimum_salary
+FROM Employees
+GROUP BY department;
+
 
