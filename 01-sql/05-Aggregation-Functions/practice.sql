@@ -42,3 +42,26 @@ WHERE department IN ("HR") OR department IN ("Marketing");
 3.Find employees who work in Engineering or Finance and earn more than 60,000. Use parentheses to make the intended logic clear.
 SELECT * FROM Employees
 WHERE department IN ("Engineering", "Finance") AND salary > 60000;
+
+Problem 3 — Column aliases
+SELECT employee_name AS Name, department AS Department_Name, salary AS Monthly_Salary 
+FROM Employees;
+
+SELECT  MAX(salary) AS Highest_Salary 
+FROM Employees;
+
+Problem 4 — MIN and MAX
+SELECT MAX(salary) AS Maximum_Salary,  MIN(salary) AS Minimum_Salary 
+FROM Employees;
+
+Problem 5 — COUNT
+SELECT COUNT(*) AS Total_Employees
+FROM Employees;
+
+SELECT COUNT(*) AS Total_Employees
+FROM Employees
+WHERE Department = 'Engineering';
+
+SELECT COUNT(*) AS Total_Employees
+FROM Employees
+WHERE salary >= 60000;
