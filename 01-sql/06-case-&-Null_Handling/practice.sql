@@ -116,4 +116,25 @@ end as salary_level
 FROM Employees
 Group BY department;
 
--- Problem 10 — Department-wise CASE WHEN + NULL handling --
+-- Problem 10 — Final Challenge --
+SELECT employee_name, department,salary, bonus, coalesce(bonus, 0) as bonus_as_zero, salary + coalesce(bonus, 0) as total_compensation,
+case 
+when salary >= 70000 then "High salary"
+when salary >= 50000 then "Medium salary"
+when salary < 50000 then "low salary"
+end as salary_category,
+case 
+when bonus is null then "no bonus"
+when bonus > 5000 then "high bonus"
+else "regular bonus"
+end as Bonus_Status,
+case 
+when salary >= 70000 AND bonus >= 5000 then "senior"
+when salary >= 50000 then "mid-level"
+else "junior"
+end as Employee_Level,
+case 
+when email is null then "email missing"
+else "email available"
+end as Email_Status
+FROM Employees;
