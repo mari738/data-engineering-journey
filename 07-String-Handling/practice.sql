@@ -60,12 +60,16 @@ FROM employees;
 
 --  Problem 10 — 🔥 Final Challenge: Employee Profile--
 SELECT employee_id, trim(employee_name),
-upper(employee_name),
-length(employee_name),
-substring(employee_name, 1, 3),
-concat(department,' ',city), 
-instr(email, '@') as email_position,
-right(phone, 4) last_4digits_phone, 
-reverse(employee_name) as reversed, 
-format(salary, 2) as formatted_salary
+SELECT 
+    employee_id,
+    TRIM(employee_name) AS trimmed,
+    TRIM(UPPER(employee_name)) AS uppername,
+    LENGTH(TRIM(employee_name)) AS lengthname,
+    SUBSTRING(TRIM(employee_name), 1, 3) AS charact,
+    CONCAT(department, ' ', city) AS joining,
+    REPLACE(email, '@gmail.com', '@company.com') AS replaced,
+    INSTR(email, '@') AS email_position,
+    RIGHT(phone, 4) AS last_4digits_phone,
+    REVERSE(employee_name) AS reversed,
+    FORMAT(salary, 2) AS formatted_salary
 FROM employees;
